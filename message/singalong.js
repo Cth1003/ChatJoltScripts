@@ -62,82 +62,90 @@ var songLines = [
   'A whore for all eternity.',
   
   //Dance of the Manwhore
-  /Love as large as brontosaurus/i,
+  /Love as large as bront[oa]sa[uo]r[uo]s/i,
   'Passion like a bleeding walrus',
   /Passion like a bleeding walrus/i,
   'Our love is real it\'s no mirage',
-  /Our love is real it(?:s|\'s| is) no mirage/i,
+  /Our love is real it(?:\'?s| is) no mirage/i,
   'Want to lock you in my garage',
-  /Want to lock you in my garage/i,
+  /(?:I )?Want to lock you in my garage/i,
   'Climb upon my trusty steed',
   /Climb (?:u|a)pon my trusty steed/i,
   'Later you will taste my seed',
   /Later you will taste my seed/i,
   'This heart of mine is yours to capture',
-  /This heart of mine is yours to capture/i,
+  /Th(?:is|e) heart of mine is yours to capture/i,
   'From now on til Velocirapture',
-  /From now on til Velocirapture/i,
+  /From now on till? Velocirapt(?:ure|or)/i,
   'Wield my passion like an axe',
-  /Wield my passion like an axe/i,
+  /[WY]ield my passion like an axe/i,
   'It\'s warm and gooey just like wax',
-  /It(?:\'s|s| is) warm and gooey just like wax/i,
+  /It(?:\'?s| is) warm and gooey\,? just like wax/i,
   'You cannot tame such juicy lust',
-  /You can(?:not|\'nt| not) tame such juicy lust/i,
+  /You can(?: ?not|\'?nt) tame such juicy lust/i,
   'Can you withstand my manly musk',
   /Can you withstand my manly musk/i,
   'Roses are red violets are blue',
-  /Roses are red violets are blue/i,
+  /Roses are red\,? violets are blue/i,
   'I must eat yoghurt of off you',
-  /I must eat you?gh?urt of off you/i,
+  /I must eat you?gh?urt off? off? you/i,
   'Know that I can never hold back',
-  /Know that I can (?:never|not) hold back/i,
+  /Know that I can(?: never| not|\'?t) hold back/i,
   'That might be why I smoke the crack',
   'My father never loved me...',
-  /That might be why I smoke the crack/i,
+  /That (?:might|may) be why I smoke the crack/i,
   'My father never loved me...',
+  /'My father never loved me/i,
   'Love is like a ripened squid',
   /Love is like a ripened squid/i,
   'It stinks with limp appendages',
-  /It stinks with limp appendages/i,
+  /It (?:stinks|re[ea]ks) with limp app?end[ae]ges/i,
   'You scratch the rash that\'s on my ass',
-  /You scratch the rash that(?:\'s|s| is) on my ass/i,
+  /(?:You )?scratch the rash that(?:\'?s| is) on my ass/i,
   'The itch only love can surpass',
   /The itch only love can surpass/i,
   'Yoghurt\'s a dish best served chilled',
-  /You?gh?urt\'?s a dish best served chilled/i,
+  /You?gh?urt(?:\'?s| is) a dish best served chill(?:ed)?/i,
   'Forgot to get my prescription filled',
-  /Forgot to get my prescription filled/i,
+  /Forg[oe]t to get my p(?:re|er)scription fill(?:ed)?/i,
   'Tonight I will have sex with you',
-  /Tonight I will have sex with you/i,
+  /Tonight I(?: will|\'?ll?) have sex with you/i,
   'Then we will prepare a stew',
-  /Then we will prepare a stew/i,
+  /Then (?:we|i)(?: will|\'ll?) prepare a stew/i,
   'Just lie down and let me touch',
   /Just lie down and let me touch/i,
   'I promise you it won\'t hurt much',
-  /I promise you it won\'?t hurt much/i,
+  /I promise you\,? it won\'?t hurt much/i,
   'Stalk like a lizard of the night',
   /Stalk like a lizard of the night/i,
   'Come closer, Fernando won\'t bite',
-  /Come closer,? Fernando won\'?t bite/i,
+  /Come closer\,? Fernando won\'?t bite/i,
   'Tears and screams of pain and pleasure',
   /Tears and screams of pain and pleasure/i,
   'Our gifts we will share forever',
-  /Our gifts we will share forever/i,
+  /(?:Our|The) gifts we(?: will|\'?ll?) share forever/i,
+  /We(?: will|\'?ll?) share our gifts forever/i,
   'Drenched deep in sweaty brine',
   /Drenched deep in sweaty brine/i,
   'Is this blood yours or mine\?'
-  
 ];
 
+var handled = false;
 for (var i = 0; i < songLines.length; i += 1)
   if (typeof songLines[i] != 'string')
     if (songLines[i].test(message.content))
       for (i = i + 1; i < songLines.length; i += 1) {
-        if (typeof songLines[i] != 'string')
-          continue;
+        if (typeof songLines[i] != 'string') {
+          if (!handled)
+            continue;
+          else {
+            i = songLines.length;
+            break;
+          }
+        }
         
-        say(songLines[i]);
-        setHandled(true);
-        i = songLines.length;
-        break;
+        say(songLines[i], true);
+        handled = true;
       }
+if (handled)
+  setHandled(true);
