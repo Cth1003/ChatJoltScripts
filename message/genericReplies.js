@@ -1,4 +1,14 @@
 var handlers = {
+  uW0tM8: {
+    triggers: [
+      /u w[o0]t m\d/i
+    ],
+    responses: [
+      'il shank ur nan i swer on me mums life'
+    ],
+    needsName: false
+  },
+  
   obeyMe: {
     triggers: [
       // by, to, out
