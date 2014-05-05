@@ -55,6 +55,7 @@ var manualDefinitions = {
   'mantas': 'A GameJolt user. Either he\'s Fernando\'s clone or Fernando\'s his clone. Common in GameJolt on sick days. Follower of Tim Minchin.',
   'jelly': '1. Being jealous, or hating. 2. A GameJolt user. Procrastinator that likes gooseberry Jell-o™, drawing and enters randomly the chat by saying \'Jello\'. Undefined gender, it\'s a Gumby G Blockhead.',
   'eleuin': 'A GameJolt user. A proud Linux nazi activist at day, and faps for Windows at night. Goes by many names in hopes of remaining anonymous, but not from me. Not from ChatJolt.',
+  '420leuin': 'Eleuin\'s dank cousin.',
   'jellys gender': 'Undefined.',
   'dark de saint': 'Mantas\'s secret identity, god of death, the king of slaves, he lurks in the shadows of GameJolt.',
   'atloria': '"Watch the skies"',
@@ -70,7 +71,22 @@ var manualDefinitions = {
   'feargeorge': 'A GameJolt user.',
   'tom': 'salt',
   'tom van boogart': 'salt',
-  'nyan cat': 'A special cat with the ability to morph into a poptart and shoot rainbows out of its ass while flying through space... Forever.'
+  'nyan cat': 'A special cat with the ability to morph into a poptart and shoot rainbows out of its ass while flying through space... Forever.',
+  'pewdiepie': '1. An overrated Youtube porn star that got popular off pulling faces and screaming "RAPE". 2. A sex move for 12 year olds.',
+  'pewds': 'See \'PewDiePie\'.',
+  'sony': 'The burn centre for Microsoft during E3.',
+  'death is fleeting': 'Your mum is fleeting!',
+  'xbox live': 'Hell.',
+  'alienware': 'Dell\'s series of overpriced & overrated computers. The Apple of gaming PCs.',
+  'parody': 'https://www.youtube.com/watch?v=rflHvYsx0GA',
+  'youtube': 'https://www.youtube.com/watch?v=XeRop_FOuws',
+  'cops on fire with erections': 'https://www.youtube.com/watch?v=yPbhhqlFERk',
+  'yahoo toolbar': 'See: Yahoo VPN Toolbar.',
+  'yahoo vpn toolbar': 'Amazing VPN tunneling software, allows you to play games without opening ports on your router. Backend for Hamachi.',
+  'ask toolbar': 'A shitty competitor to the awesome Yahoo VPN Toolbar, obviously nowhere near as good. Backend to Tunngle.',
+  'tunngle': 'Synonym for inferior.',
+  'hamachi': 'Amazing VPN tunnelling software, allows you to play games with friends with no requirement to open ports. Requires Yahoo VPN Toolbar backend.',
+  'slendytubbies': 'Winner of over 100,000.5 awards, rated 10/10 PERFECT by IGN. We present to you, the best game ever to be played thru Hamachi!'
 }
 
 if (message.hasMyName) {
