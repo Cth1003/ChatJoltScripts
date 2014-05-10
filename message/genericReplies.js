@@ -266,6 +266,18 @@ var handlers = {
       'http://bit.ly/1ewlo7z'
     ],
     needsName: false
+  },
+
+  howOldIsAgro: {
+    triggers: [
+      /\bhow old is agro\b/i
+    ],
+    responses: [
+      'Agro is 7.',
+      'Not your mom\'s age!',
+      '2014 - 2007',
+      'Not even 8.'
+    ]
   }
 };
 
