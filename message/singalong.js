@@ -186,7 +186,7 @@ var songs = {
     'Now these points of data make a beautiful line',
     /(?:but )?as they burned it hurt because/i,
     'I was so happy for you!',
-    /I (?:was|am) so happy for you/,
+    /I (?:was|am) so happy for you/i,
     'Now these points of data make a beautiful line',
     /now these points? of data make a beautifull? line/i,
     'And we\'re out of beta, we\'re releasing on time',

@@ -1,8 +1,7 @@
 if (message.hasMyName) {
   var lowerCase = message.content.toLowerCase();
   if (lowerCase.indexOf("random number") != -1) {
-    say(Math.round(Math.random() * 10000000));
+    say(Math.round(Math.random() * 10000000).toString());
     setHandled(true);
-    break;
   }
 }
