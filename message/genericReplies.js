@@ -1,4 +1,32 @@
 var handlers = {
+  meStuff: {
+    triggers: [
+      /^\/me (.*)$/i
+    ],
+    responses: [
+      '*<<USER>> <<1>>'
+    ],
+    needsName: false
+  },
+  
+  doaBarrelRoll: {
+    triggers: [
+      /^\bdo a barr?ell? rol[le]?\b$/i
+    ],
+    responses: [
+      'TELL YOUR MOM TO DO A BARREL ROLL!',
+      'Do I look like a gay fox to you?',
+      'STFU PEPPY',
+      'I don\'t do barrel rolls.',
+      'Barrel rolls are for the weak!',
+      'I\'ll make your face do a barrel roll.',
+      'Again with the barrel rolls?...',
+      '*Does a barrel roll* HAPPY NOW?!',
+      'Fun fact: Barrel rolls are useless and do not, in fact, protect you from laser'
+    ],
+    needsName: true
+  },
+  
   uW0tM8: {
     triggers: [
       /u w[o0]t m\d/i

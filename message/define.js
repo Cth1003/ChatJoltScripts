@@ -86,7 +86,8 @@ var manualDefinitions = {
   'ask toolbar': 'A shitty competitor to the awesome Yahoo VPN Toolbar, obviously nowhere near as good. Backend to Tunngle.',
   'tunngle': 'Synonym for inferior.',
   'hamachi': 'Amazing VPN tunnelling software, allows you to play games with friends with no requirement to open ports. Requires Yahoo VPN Toolbar backend.',
-  'slendytubbies': 'Winner of over 100,000.5 awards, rated 10/10 PERFECT by IGN. We present to you, the best game ever to be played thru Hamachi!'
+  'slendytubbies': 'Winner of over 100,000.5 awards, rated 10/10 PERFECT by IGN. We present to you, the best game ever to be played thru Hamachi!',
+  'pewdening': 'A massive invasion of retarded pewdiepie fans to a game, website or online community. Usually results in overwhelming said service to the point of being unusable and general dumbification of the existing user-base.'
 }
 
 if (message.hasMyName) {

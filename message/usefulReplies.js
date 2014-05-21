@@ -55,14 +55,24 @@ var handlers = {
   }
 };
 
-if (message.hasMyName) {
-  var handled = false;
-  var handlerNames = Object.keys(handlers);
-  for (var i = 0; i < handlerNames.length && handled == false; i += 1) {
-    var handler = handlers[handlerNames[i]];
+var handled = false;
+var handlerNames = Object.keys(handlers);
+for (var i = 0; i < handlerNames.length && handled == false; i += 1) {
+  var handler = handlers[handlerNames[i]];
+  if (message.hasMyName || handler.needsName == false) {
     for (var j = 0; j < handler.triggers.length; j += 1) {
-      if (handler.triggers[j].test(message.content)) {
-        say(handler.responses[Math.floor(Math.random() * handler.responses.length)].replace('<<USER>>', message.userNickname));
+      var match = message.content.match(handler.triggers[j]);
+      if (match != null) {
+        var result = handler.responses[Math.floor(Math.random() * handler.responses.length)].replace('<<USER>>', message.userNickname);
+        for (var k = 1; match.length > k; k += 1) {
+          if (result.indexOf('<<' + k + '>>') != -1)
+            result = result.replace('<<' + k + '>>', match[k]);
+          else if (result.indexOf('<<u' + k + '>>') != -1)
+            result = result.replace('<<u' + k + '>>', encodeURIComponent(match[k]));
+          else
+            break;
+        }
+        say(result);
         setHandled(true);
         handled = true;
         break;
