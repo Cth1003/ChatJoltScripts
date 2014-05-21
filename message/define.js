@@ -87,7 +87,7 @@ var manualDefinitions = {
   'tunngle': 'Synonym for inferior.',
   'hamachi': 'Amazing VPN tunnelling software, allows you to play games with friends with no requirement to open ports. Requires Yahoo VPN Toolbar backend.',
   'slendytubbies': 'Winner of over 100,000.5 awards, rated 10/10 PERFECT by IGN. We present to you, the best game ever to be played thru Hamachi!',
-  'pewdening': 'A massive invasion of retarded pewdiepie fans to a game, website or online community. Usually results in overwhelming said service to the point of being unusable and general dumbification of the existing user-base.'
+  'pewdening': 'A massive invasion of retarded pewdiepie fans to a game, website or online community. Usually results in overwhelming said service to the point of being unusable and general dumbification of the existing user-base.',
   'chef willy': 'The bestest chef ever. Chef Willy Diggelmann has become an icon and is known throughout the land for his exquisite foods and steamy conversations. He likes the bum bum and the year 1985.'
 }
 
