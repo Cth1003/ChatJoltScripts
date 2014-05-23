@@ -1,4 +1,39 @@
 var handlers = {
+  loginFamousGames: {
+    triggers: [
+      /\bhow.*(?:log[ \-]?in(?: to| with)?|join|register(?: to| for| in)?|enter|play).*(?:pokemon ?3d)\b/i
+    ],
+    responses: [
+      'You need to use your GameJolt token. You can find it in the top part of the page right next to your username. Just click "show token".'
+    ],
+    needsName: false
+  },
+  
+  whereToken: {
+    triggers: [
+      /\b(?:what(?:\'?s| is)|give m[ey]|gimme).*my token\b/i,
+      /\bwhere(?:\'?s| is)?.*token\b/i,
+      /\bI (?:want|need).*token\b/i,
+      /\b(?:find|locate|get).*my token\b/i
+    ],
+    responses: [
+      'You can find your GameJolt token in the top part of the page right next to your username. Just click "show token".'
+    ],
+    needsName: false
+  },
+  
+  whatIsToken: {
+    triggers: [
+      /\bwhat(?:\'?s| is).*token\b/i,
+      /\b(?:ask|want|need)s? (?:m[ey] )?(?:for|4).*token\b/i,
+      /\b(?:what|how).*(?:do with|use (?:the|this|a|that|my)).*token\b/i
+    ],
+    responses: [
+      'A GameJolt token is like a password for games. You can use it to log in and get highscores and achievements for games here.'
+    ],
+    needsName: false
+  },
+  
   greet: {
     triggers: [
       /\b(?:he+l+o+|hi+5?|he+y+|su+p+|howdy|wagwan|salutations?|greetings?)\b/i,

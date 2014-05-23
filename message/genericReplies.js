@@ -1,4 +1,24 @@
 var handlers = {
+  meBackwardsStuffNeverNayef: {
+    triggers: [
+      /^\/me (.* Nayef(?: Mazraa?ni)?)\.?$/i
+    ],
+    responses: [
+      '*<<USER>> <<1>>'
+    ],
+    needsName: false
+  },
+  
+  meBackwardsStuff: {
+    triggers: [
+      /^\/me ((?:.* )?(?:kicks?|punche?s?|slaps?|hits?|shoots?|rapes?|violates?|piss(?:es)? on|spits? on|st[ae]bs?)) (.*?)\.?$/i
+    ],
+    responses: [
+      '*<<2>> <<1>> <<USER>>'
+    ],
+    needsName: false
+  },
+  
   meStuff: {
     triggers: [
       /^\/me (.*)$/i
@@ -11,7 +31,7 @@ var handlers = {
   
   doaBarrelRoll: {
     triggers: [
-      /^\bdo a barr?ell? rol[le]?\b$/i
+      /\bdo a barr?ell? rol[le]?\b/i
     ],
     responses: [
       'TELL YOUR MOM TO DO A BARREL ROLL!',
