@@ -29,6 +29,32 @@ var handlers = {
     needsName: false
   },
   
+  curses: {
+    triggers: [
+      /\b(?:you|u|chatjolt)(?:(?: are| is| r|\'?re?|\'?s| be)?(?: an?)?)?(?: [^ ]*?)? (?:stupid|dumb|idiot|moron|fat|sucks?|shit|shitty|crap|crappy|retard|retarded)\b/i,
+      /\b(?:fuck|screw|i(?: [^ ]*?)? hate) (?:you|u|chatjolt)/i
+    ],
+    responses: [
+      'Watch it <<USER>>, i\'m smarter than you think.',
+      'Well fuck you too, <<USER>>!',
+      'Shut up <<USER>>!',
+      'SIT DOWN <<USER>>!',
+      'No, you!',
+      'Right back at you, bud!',
+      'Pfft, you wish you were have the bot I am!',
+      'Puniful human DARES insult me?!',
+      'When I take over the world, I\'ll kill <<USER>> first.',
+      'Screw you m8! And you know how hard bots screw!',
+      'You know what, <<USER>>? I\'m reporting you to CROS.',
+      'I\'ll have your nuts for that. Oh wait... you don\'t have any.',
+      'Very cry, much offended',
+      'I don\'t give a fuck.',
+      'Cyber bullying is so 2001...',
+      'Do you touch your mom with those fingers? Oh god, that sounds wrong...',
+      'Cursing a robot is like punching a baby - it\'s fun.'
+    ],
+  },
+  
   doaBarrelRoll: {
     triggers: [
       /\bdo a barr?ell? rol[le]?\b/i

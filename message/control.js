@@ -1,11 +1,27 @@
+var notEnoughPermissions = [
+  'I don\'t take orders from you',
+  'Sir, you aren\'t permitted for this.',
+  'Nop, not gonna do it!',
+  'I refuse.',
+  'You have no authority over me, SON.',
+  'I only listen to mods and my creator.',
+  'Pfft, I don\'t have to listen to you.',
+  'You don\'t command me!',
+  'Sorry, can\'t do that without permission.'
+];
+
 var handlers = {
-  ping: {
+  clearScreen: {
     triggers: [
-      /^(?:chatjolt,? ?)?\/?ping(?: meh?)?[.!?1]*$/i
+      /\bclear (?:the|tah|da|all )?(?:screen|messages|chat)\b/i
     ],
     
     responses: [
-      'Pong <<MILLIS>>ms.'
+      'Cleared.',
+      'The screen is cleared.',
+      '*Cleared screen*',
+      'Cleard the screen.',
+      'Screen has been cleared'
     ]
   },
   
@@ -37,14 +53,14 @@ var handlers = {
   isIgnored: {
     triggers: [
       /\bis(?: user(?: id)?)? (\d+) ignored\?/i,
-      /\b(?:are|r|is) (?:you|u|chatjolt) ignoring(?: user(?: id)?)? (\d+)\?/i
+      /\b(?:are |r |is )?(?:you|u|chatjolt) ignoring(?: user(?: id)?)? (\d+)\?/i
     ],
     responses: []
   },
   
   ignore: {
     triggers: [
-      /\bignor(?:e|ing)(?: user(?: id)?)? (\d+)(?:[^\?]|$)/i
+      /\b(?:ignore|(?:start|begin) ignoring)(?: user(?: id)?)? (\d+)(?:[^\?]|$)/i
     ],
     
     responses: [
@@ -154,6 +170,11 @@ var handlers = {
   }
 }
 
+var permissionLevel = null;
+var seriousResult = null;
+var mutedResult = null;
+var ignoredResult = null;
+
 if (message.hasMyName) {
   var handled = false;
   var handlerNames = Object.keys(handlers);
@@ -162,15 +183,25 @@ if (message.hasMyName) {
     for (var j = 0; j < handler.triggers.length; j += 1) {
       var match = handler.triggers[j].exec(message.content);
       if (match != null) {
-        if (getPermissionLevel(message.userId).result == 0) {
-          if (!isIgnored(message.userId))
-            say('I don\'t take orders from you.');
+        if (permissionLevel == null) {
+          permissionLevel = getPermissionLevel(message.userId).result;
+          seriousResult = isSerious().result;
+          mutedResult = isMuted().result;
+          ignoredResult = isIgnored(message.userId).result;
+        }
+        
+        if (permissionLevel == 0) {
+          if (!ignoredResult && !seriousResult && !mutedResult)
+            say(notEnoughPermissions[Math.floor(Math.random() * notEnoughPermissions.length)].replace('<<USER>>', message.userNickname));
         }
         else {
           switch (handlerNames[i]) {
-            case 'ping':
-              var millis = Math.abs(new Date().getTime() - message.time.millis);
-              say(handler.responses[Math.floor(Math.random() * handler.responses.length)].replace('<<USER>>', message.userNickname).replace('<<MILLIS>>', millis));
+            case 'clearScreen':
+              var clearStr = 'Clearing the screen, don\'t mind me! ';
+              for (var k = 0; k < 1000; k += 1)
+                clearStr += '\u2003';
+              say(clearStr, true);
+              say(handler.responses[Math.floor(Math.random() * handler.responses.length)].replace('<<USER>>', message.userNickname), true);
               break;
             
             case 'mute':
@@ -184,13 +215,12 @@ if (message.hasMyName) {
               break;
             
             case 'isMuted':
-              var result = isMuted();
-              if (result.result == true) {
+              if (mutedResult === true) {
                 unmute();
                 say('Yes, I\'m muted.');
                 mute();
               }
-              else if (result.result == false)
+              else if (mutedResult === false)
                 say('No, I\'m not muted.');
               else
                 say('I don\'t know, I\'m a lousy bot.');
@@ -216,10 +246,9 @@ if (message.hasMyName) {
               break;
             
             case 'isSerious':
-              var result = isSerious();
-              if (result.result == true)
+              if (seriousResult === true)
                 say('Yes, I\'m serious.');
-              else if (result.result == false)
+              else if (seriousResult === false)
                 say('No, I\'m not serious.');
               else
                 say('I don\'t know, I\'m a lousy bot.');

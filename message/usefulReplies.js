@@ -1,7 +1,23 @@
 var handlers = {
+  fatalSheep: {
+    triggers: [
+      /\bfatalsheep\b/i
+    ],
+    responses: [
+      'FatalSleep*',
+      'FatalSleep...',
+      'It\'s FatalSleep, not FatalSheep.',
+      'FatalSleep, damnit!',
+      'His name is FatalSleep.',
+      'You mean FatalSleep',
+      'FatalSleep, pls.'
+    ],
+    needsName: false
+  },
+  
   loginFamousGames: {
     triggers: [
-      /\bhow.*(?:log[ \-]?in(?: to| with)?|join|register(?: to| for| in)?|enter|play).*(?:pokemon ?3d)\b/i
+      /\b(?:how|can(?:\'?t| ?not)).*(?:log[ \-]?in(?: to| with)?|connect(?: to| with)?|join|register(?: to| for| in)?|enter|play).*(?:pokemon ?3d)\b/i
     ],
     responses: [
       'You need to use your GameJolt token. You can find it in the top part of the page right next to your username. Just click "show token".'

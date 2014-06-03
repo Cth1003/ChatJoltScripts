@@ -19,9 +19,9 @@ if (message.hasMyName) {
     var match = queryRegexes[i].exec(message.content.replace(/["']/ig, ''));
     if (match != null) {
       var what = match[1].trim();
-      var answer = google("how much is " + what);
-      if (typeof answer.result == 'string')
-        say(answer.result);
+      var answer = google("how much is " + what, true);
+      if (typeof answer.result == 'object' && typeof answer.result.widget == 'string')
+        say(answer.result.widget);
       else
         say(noResults[Math.floor(Math.random() * noResults.length)]);
       setHandled(true);
