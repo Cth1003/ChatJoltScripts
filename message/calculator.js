@@ -11,7 +11,8 @@ var noResults = [
   'Failed to compute!',
   'Not a clue!',
   'Beep bloop beep! Cannot compute!',
-  'Not sure. Try Google.'
+  'Not sure. Try Google.',
+  'What kind of dumbass tries calculating this?'
 ];
 
 if (message.hasMyName) {
@@ -20,7 +21,7 @@ if (message.hasMyName) {
     if (match != null) {
       var what = match[1].trim();
       var answer = google("how much is " + what, true);
-      if (typeof answer.result == 'object' && typeof answer.result.widget == 'string')
+      if (typeof answer.result == 'object' && typeof answer.result.widget == 'string' && answer.result.widget != '')
         say(answer.result.widget);
       else
         say(noResults[Math.floor(Math.random() * noResults.length)]);

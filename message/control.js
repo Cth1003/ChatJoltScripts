@@ -22,7 +22,8 @@ var handlers = {
       '*Cleared screen*',
       'Cleard the screen.',
       'Screen has been cleared'
-    ]
+    ],
+    permissionLevel: 2
   },
   
   unignore: {
@@ -77,7 +78,7 @@ var handlers = {
   
   unserious: {
     triggers: [
-      /\b(?:(?:don'?t|stop|cease|dun|quit) be(?:ing)? |un)(?:serious|srs)\b/i,
+      /\b(?:(?:don\'?t|stop|cease|dun|quit) be(?:ing)? |un)(?:serious|srs)\b/i,
       /\b(?:why|y) so (?:serious|srs)\?/i,
       /\bbe(?:come)? (?:fun|chaotic|amusing|funny)\b/i
     ],
@@ -95,7 +96,7 @@ var handlers = {
   
   serious: {
     triggers: [
-      /\b(?:(?:don'?t|stop|cease|dun|quit) be(?:ing)? |un)(?:fun|chaotic|amusing|funny)\b/i,
+      /\b(?:(?:don\'?t|stop|cease|dun|quit) be(?:ing)? |un)(?:fun|chaotic|amusing|funny)\b/i,
       /\bbe(?:come)? (?:serious|srs)\b/i
     ],
     
@@ -166,7 +167,8 @@ var handlers = {
   muteYourself: {
     triggers: [
       /\bmute yourself\b/i
-    ]
+    ],
+    permissionLevel: 2
   }
 }
 
@@ -184,13 +186,14 @@ if (message.hasMyName) {
       var match = handler.triggers[j].exec(message.content);
       if (match != null) {
         if (permissionLevel == null) {
-          permissionLevel = getPermissionLevel(message.userId).result;
+          permissionLevel = getPermissionLevel(message.userId, message.roomId).result;
           seriousResult = isSerious().result;
           mutedResult = isMuted().result;
           ignoredResult = isIgnored(message.userId).result;
         }
         
-        if (permissionLevel == 0) {
+        var neededPermission = (typeof handler.permissionLevel == 'number') ? handler.permissionLevel : 1;
+        if (permissionLevel < neededPermission) {
           if (!ignoredResult && !seriousResult && !mutedResult)
             say(notEnoughPermissions[Math.floor(Math.random() * notEnoughPermissions.length)].replace('<<USER>>', message.userNickname));
         }

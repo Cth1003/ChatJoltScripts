@@ -236,7 +236,8 @@ var handlers = {
     triggers: [
       /\bhow (?:old|ancient) (?:are|r) (?:you|u)\b/i,
       /\bwh?at(?:\'?| i)s (?:you(?:\'?re?)?|ur?) age\b/i,
-      /\bwhen were (?:you|u) (?:born|created|made|activated)\b/i
+      /\bwhen were (?:you|u) (?:born|created|made|activated)\b/i,
+      /\bhow long(?: do| are| r) (?:you|u) (?:exist|live|active|alive)\b/i
     ],
     responses: [
       'I am about 4 months old.',
@@ -306,7 +307,7 @@ var handlers = {
   
   users4Mod: {
     triggers: [
-      /#(Alice|(?:Dr\.)?Nu|Jelly|Nik|Barry)4Mod\b/i
+      /#(Alice|(?:Dr\.)?Nu|Jelly|Nik|Barry|Jupiter ?Hadley|Jup)4Mod\b/i
     ],
     responses: [
       '#<<1>>4Mod',
@@ -344,13 +345,14 @@ var handlers = {
 
   howOldIsAgro: {
     triggers: [
-      /\bhow old is agro\b/i
+      /\bhow old is agro\b/i,
+      /\bwhat(?:\'?s| is) agro\'?[sz]? age\b/i
     ],
     responses: [
-      'Agro is 7.',
+      'Agro is 9.',
       'Not your mom\'s age!',
-      '2014 - 2007',
-      'Not even 8.'
+      '2014 - 2005',
+      'Not even 10.'
     ]
   }
 };
