@@ -40,7 +40,7 @@ if (typeof birthdayEntry == 'object' && birthdayEntry.lastGrats < today.getTime(
 
   if ((begin.getUTCFullYear() < end.getUTCFullYear() && (today >= begin.getTime() || today < end.getTime())) || (today >= begin.getTime() && today < end.getTime())) {
     var possibleCongratulations = (birthdayEntry.isOld) ? generics.concat(oldies) : generics;
-    say('Happy birthday ' + message.userNickname + '! ' + possibleCongratulations[Math.floor(Math.random() * possibleCongratulations.length)]);
+    say('Happy birthday ' + message.userNickname + '! ' + possibleCongratulations[Math.floor(Math.random() * possibleCongratulations.length)], { 'ignoreCooldown': true });
     birthdayEntry.lastGrats = today;
     save();
     setHandled(true);

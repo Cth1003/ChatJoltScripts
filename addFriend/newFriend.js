@@ -18,5 +18,5 @@ var randomYayMessages = [
   'This just in: <<USER>> became my friend!'
 ];
 
-say(randomYayMessages[Math.floor(Math.random() * randomYayMessages.length)].replace('<<USER>>', friend.nickname), true);
+say(randomYayMessages[Math.floor(Math.random() * randomYayMessages.length)].replace('<<USER>>', friend.nickname), { 'ignoreCooldown': true });
 setHandled(true);

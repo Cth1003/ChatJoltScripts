@@ -41,7 +41,7 @@ if (typeof birthday == 'object') {
 
   if ((begin.getUTCFullYear() < end.getUTCFullYear() && (today >= begin.getTime() || today < end.getTime())) || (today >= begin.getTime() && today < end.getTime())) {
     var possibleCongratulations = (birthday.isOld) ? generics.concat(oldies) : generics;
-    say('Happy birthday ' + user.nickname + '! ' + possibleCongratulations[Math.floor(Math.random() * possibleCongratulations.length)]);
+    say('Happy birthday ' + user.nickname + '! ' + possibleCongratulations[Math.floor(Math.random() * possibleCongratulations.length)], { 'ignoreCooldown': true });
     setHandled(true);
   }
 }

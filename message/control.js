@@ -11,6 +11,14 @@ var notEnoughPermissions = [
 ];
 
 var handlers = {
+  debug: {
+    triggers: [
+      /^chatjolt debug$/i
+    ],
+    responses: [],
+    permissionLevel: 3
+  },
+  
   clearScreen: {
     triggers: [
       /\bclear (?:the|tah|da|all )?(?:screen|messages|chat)\b/i
@@ -177,6 +185,19 @@ var seriousResult = null;
 var mutedResult = null;
 var ignoredResult = null;
 
+function getUserDisplayName(userData, index, userId) {
+  try {
+    if (typeof userData.result == 'object' && userData.result.response.success == 'true' ) {
+      var user = userData.result.response.users[index];
+      return (typeof user.developer_name == 'string' && user.developer_name != '') ? user.developer_name : user.username;
+    }
+    return userId.toString();
+  }
+  catch (err) {
+    return userId.toString();
+  }
+}
+
 if (message.hasMyName) {
   var handled = false;
   var handlerNames = Object.keys(handlers);
@@ -199,12 +220,16 @@ if (message.hasMyName) {
         }
         else {
           switch (handlerNames[i]) {
+            case 'debug':
+              say('Test', { 'ignoreCooldown': true, 'roomId': 0 });
+              break;
+            
             case 'clearScreen':
               var clearStr = 'Clearing the screen, don\'t mind me! ';
               for (var k = 0; k < 1000; k += 1)
                 clearStr += '\u2003';
-              say(clearStr, true);
-              say(handler.responses[Math.floor(Math.random() * handler.responses.length)].replace('<<USER>>', message.userNickname), true);
+              say(clearStr, { 'ignoreCooldown': true });
+              say(handler.responses[Math.floor(Math.random() * handler.responses.length)].replace('<<USER>>', message.userNickname), { 'ignoreCooldown': true });
               break;
             
             case 'mute':
@@ -230,12 +255,12 @@ if (message.hasMyName) {
               break;
             
             case 'muteYourself':
-              say('5', true);
-              say('4', true);
-              say('3', true);
-              say('2', true);
-              say('1', true);
-              say('BOOM', true);
+              say('5', { 'ignoreCooldown': true });
+              say('4', { 'ignoreCooldown': true });
+              say('3', { 'ignoreCooldown': true });
+              say('2', { 'ignoreCooldown': true });
+              say('1', { 'ignoreCooldown': true });
+              say('BOOM', { 'ignoreCooldown': true });
               break;
             
             case 'serious':
@@ -259,30 +284,33 @@ if (message.hasMyName) {
             
             case 'ignore':
               var result = ignore(+match[1]);
+              var displayName = getUserDisplayName(getUserInfo(match[1]), 0, match[1]);
               if (result.result == true)
-                say(handler.responses[Math.floor(Math.random() * handler.responses.length)].replace('<<TARGET>>', match[1]));
+                say(handler.responses[Math.floor(Math.random() * handler.responses.length)].replace('<<TARGET>>', displayName));
               else if (result.result == false)
-                say('I\'m already ignoring ' + match[1]);
+                say('I\'m already ignoring ' + displayName);
               else
-                say('I can\'t ignore ' + match[1] + '. I\'m a lousy bot.');
+                say('I can\'t ignore ' + displayName + '. I\'m a lousy bot.');
               break;
             
             case 'unignore':
               var result = unignore(+match[1]);
+              var displayName = getUserDisplayName(getUserInfo(match[1]), 0, match[1]);
               if (result.result == true)
-                say(handler.responses[Math.floor(Math.random() * handler.responses.length)].replace('<<TARGET>>', match[1]));
+                say(handler.responses[Math.floor(Math.random() * handler.responses.length)].replace('<<TARGET>>', displayName));
               else if (result.result == false)
-                say('I\'m not ignoring ' + match[1] + ' anyways.');
+                say('I\'m not ignoring ' + displayName + ' anyways.');
               else
-                say('I failed to unignore ' + match[1] + '. I\'m a lousy bot.');
+                say('I failed to unignore ' + displayName + '. I\'m a lousy bot.');
               break;
             
             case 'isIgnored':
               var result = isIgnored(+match[1]);
+              var displayName = getUserDisplayName(getUserInfo(match[1]), 0, match[1]);
               if (result.result == true)
-                say('Yes, I\'m ignoring ' + match[1]);
+                say('Yes, I\'m ignoring ' + displayName);
               else if (result.result == false)
-                say('No, I\'m not ignoring ' + match[1]);
+                say('No, I\'m not ignoring ' + displayName);
               else
                 say('I don\'t know, I\'m a lousy bot.');
               break;
@@ -293,10 +321,26 @@ if (message.hasMyName) {
                 if (result.result.length == 0)
                   say('I\'m not ignoring anyone at the moment.');
                 else {
-                  var ignoredUsers = '';
-                  for (var i = 0; i < result.result.length; i += 1)
-                    ignoredUsers += ', ' + result.result[i];
+                  var resolvedNames = {};
+                  for (var k = 0; k < result.result.length; k += 1)
+                    resolvedNames[result.result[k]] = result.result[k];
                   
+                  var userData = getUserInfo(result.result);
+                  if (typeof userData.result == 'object' && typeof userData.result.response == 'object' && userData.result.response.success == 'true' && Array.isArray(userData.result.response.users)) {
+                    for (var k = 0; k < userData.result.response.users.length; k += 1) {
+                      var user = userData.result.response.users[k];
+                      try {
+                        resolvedNames[user.id.toString()] = (typeof user.developer_name == 'string' && user.developer_name != '') ? user.developer_name : user.username;
+                      }
+                      catch (err) {
+                      }
+                    }
+                  }
+                  
+                  var ignoredUsers = '';
+                  Object.keys(resolvedNames).forEach(function (userId) {
+                    ignoredUsers += ', ' + resolvedNames[userId] + ' (' + userId + ')';
+                  });
                   say('I\'m ignoring these users: ' + ignoredUsers.substring(2));
                 }
               }
