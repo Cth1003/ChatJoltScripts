@@ -354,6 +354,25 @@ var handlers = {
       '2014 - 2005',
       'Not even 10.'
     ]
+  },
+  
+  nikanese: {
+    triggers: [
+      /\b(?:speak|say(?: something| a word)( in)? nik(-a|a)ne(s|z)e\b/i
+    ],
+    responses: [
+      'Oruwaka itko na fudo?',
+      'Aksha shindo fina oota fi!',
+      'Takamundo anako ken du shah',
+      'Raigjo aksha Shinshido jakindo!',
+      'Nako meendo ka? Shi da!',
+      'SHINSHIDOOOO!',
+      'Honno-san utaka kendo shi?',
+      'Kata nigo shendo nak...',
+      'Jago kido, <<USER>>!',
+      'Nak kahgo utakado shinshen katamingo daku',
+      'Latigo fandi katamudinchigo aksha ken du graka'
+    ]
   }
 };
 
