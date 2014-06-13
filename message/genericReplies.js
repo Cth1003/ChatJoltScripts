@@ -358,7 +358,7 @@ var handlers = {
   
   nikanese: {
     triggers: [
-      /\b(?:speak|say(?: something| a word)( in)? nik(-a|a)ne(s|z)e\b/i
+      /\b(?:speak|say(?: something| a word)( in)?) nik\-?ane(s|z)e\b/i
     ],
     responses: [
       'Oruwaka itko na fudo?',
