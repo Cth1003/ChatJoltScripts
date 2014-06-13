@@ -52,7 +52,7 @@ var handlers = {
   
   greet: {
     triggers: [
-      /\b(?:he+l+o+|hi+5?|he+y+|su+p+|howdy|wagwan|salutations?|greetings?)\b/i,
+      /\b(?:he+l+o+|hi+5?|he+y+|su+p+|howdy|wagwan|ko'nichiwa|salutations?|greetings?)\b/i,
       /\bwh?at(?:\'?| i)s s?up\b/i,
       /\bw+h?a+[sz]+[au]+p+\b/i,
       /\bgood morning\b/i
@@ -66,6 +66,7 @@ var handlers = {
       'Well met, <<USER>>!',
       'Greetings <<USER>>.',
       'Wagwan, <<USER>>!',
+      'Ko\'nichiwa, <<USER>>,
       'High five, <<USER>>!',
       'Oh hey <<USER>>!'
     ]
@@ -73,7 +74,7 @@ var handlers = {
   
   bye: {
     triggers: [
-      /\b(?:good ?bye|bye|good ?night)\b/i,
+      /\b(?:good ?bye|bye|sayonara|good ?night)\b/i,
       /\bi(?:\'|m| am) leav(?:e|ing)\b/i,
       /\bi ha(?:f|ve?) (?:2|too?) (?:go|leave)\b/i
     ],
@@ -85,6 +86,7 @@ var handlers = {
       'Please don\'t leave me <<USER>>!',
       'Talk to you later, <<USER>>.',
       'Later, <<USER>>.',
+      'Sayonara, <<USER>>',
       'So long <<USER>>, do come back.',
       'Awww, leaving already <<USER>>?'
     ]
@@ -101,7 +103,7 @@ var handlers = {
       'No problem.',
       'My pleasure!',
       'Happy to help.',
-      'Yes. Be thankful.',
+      'Yes. Be thankful.'
     ]
   }
 };
