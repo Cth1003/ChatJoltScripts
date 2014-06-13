@@ -52,7 +52,7 @@ var handlers = {
   
   greet: {
     triggers: [
-      /\b(?:he+l+o+|hi+5?|he+y+|su+p+|howdy|wagwan|ko'nichiwa|salutations?|greetings?)\b/i,
+      /\b(?:he+l+o+|hi+5?|he+y+|su+p+|howdy|wagwan|ko\'?nn?ichiwa|salutations?|greetings?)\b/i,
       /\bwh?at(?:\'?| i)s s?up\b/i,
       /\bw+h?a+[sz]+[au]+p+\b/i,
       /\bgood morning\b/i
@@ -66,7 +66,7 @@ var handlers = {
       'Well met, <<USER>>!',
       'Greetings <<USER>>.',
       'Wagwan, <<USER>>!',
-      'Ko\'nichiwa, <<USER>>,
+      'Ko\'nichiwa, <<USER>>',
       'High five, <<USER>>!',
       'Oh hey <<USER>>!'
     ]
