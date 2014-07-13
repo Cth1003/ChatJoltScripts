@@ -379,7 +379,7 @@ function checkLines(songName, fromLine, toLine) {
               return i;
           }
           
-          say(song[i], true);
+          say(song[i], { 'ignoreCooldown': true });
           handled = true;
           if (i == song.length - 1)
             return 0;

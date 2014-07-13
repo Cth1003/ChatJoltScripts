@@ -21,7 +21,7 @@ var handlers = {
   
   clearScreen: {
     triggers: [
-      /\bclear (?:the|tah|da|all )?(?:screen|messages|chat)\b/i
+      /\bclear (?:the |tah |da |all )?(?:screen|messages|chat)\b/i
     ],
     
     responses: [
@@ -221,7 +221,7 @@ if (message.hasMyName) {
         else {
           switch (handlerNames[i]) {
             case 'debug':
-              say('Test', { 'ignoreCooldown': true, 'roomId': 0 });
+              say('Test', { 'ignoreCooldown': true });
               break;
             
             case 'clearScreen':

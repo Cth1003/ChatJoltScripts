@@ -14,16 +14,16 @@ var userMutedMessages = [
 ];
 
 var userBannedMessages = [
-  '<<USER>> is banned. Finally!',
+  '<<USER>> is banned!',
   'Would you look at that! <<USER>> got banned!',
   '<<USER>> has joined the exclusive banned club',
   '<<USER>> is no more. May you RIP in pieace.',
   '<<USER>>, you have proven yourself worthy of the banhammer.',
   '<<USER>> has left GameJolt. Forever.',
   '<<USER>> has been banned for wallhack.',
-  'Good riddance! <<USER>> has been banned!',
+  '<<USER>> has been banned!',
   'It was nice knowing you <<USER>>. BAN!',
-  'Smash the <<USER>>s! Smash em! Kuhn! Kuhn! Kuhn!'
+  'Smash the <<USER>>s! Smash em! Kuhn! Kuhn! Kuhn! (Banned)'
 ];
 
 var handled = false;
@@ -32,7 +32,7 @@ if (typeof userData.result == 'object' && userData.result.response.success == 't
     var user = userData.result.response.users[0];
     var displayName = (typeof user.developer_name == 'string' && user.developer_name != '') ? user.developer_name : user.username;
     if (user.status == 'Active')
-      if (isSerious().result)
+      if (/*isSerious().result*/true)
         say(displayName + ' has been muted.', { 'ignoreCooldown': true, 'roomId': 0 });
       else
         say(userMutedMessages[Math.floor(Math.random() * userMutedMessages.length)].replace('<<USER>>', displayName), { 'ignoreCooldown': true, 'roomId': 0 });
