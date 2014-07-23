@@ -27,10 +27,10 @@ var handlers = {
   
   whereToken: {
     triggers: [
-      /\b(?:what(?:\'?s| is)|give m[ey]|gimme).*my token\b/i,
-      /\bwhere(?:\'?s| is)?.*token\b/i,
-      /\bI (?:want|need).*token\b/i,
-      /\b(?:find|locate|get).*my token\b/i
+      /\b(?:what(?:\'?s| is)|give m[ey]|gimme).*my [\"\']?token[\"\']?\b/i,
+      /\bwhere(?:\'?s| is)?.*[\"\']?token[\"\']?\b/i,
+      /\bI (?:want|need).*[\"\']?token[\"\']?\b/i,
+      /\b(?:find|locate|get).*[\"\']?my token[\"\']?\b/i
     ],
     responses: [
       'You can find your GameJolt token in the top part of the page right next to your username. Just click "show token".'
@@ -40,12 +40,23 @@ var handlers = {
   
   whatIsToken: {
     triggers: [
-      /\bwhat(?:\'?s| is).*token\b/i,
-      /\b(?:ask|want|need)s? (?:m[ey] )?(?:for|4).*token\b/i,
-      /\b(?:what|how).*(?:do with|use (?:the|this|a|that|my)).*token\b/i
+      /\bwhat(?:\'?s| is).*[\"\']?token[\"\']?\b/i,
+      /\bwhat.*a [\"\']?token[\"\']? is\b\b/i,
+      /\b(?:ask|want|need)s? (?:m[ey] )?(?:for|4).*[\"\']?token[\"\']?\b/i,
+      /\b(?:what|how).*(?:do with|use (?:the|this|a|that|my)).*[\"\']?token[\"\']?\b/i
     ],
     responses: [
       'A GameJolt token is like a password for games. You can use it to log in and get highscores and achievements for games here.'
+    ],
+    needsName: false
+  },
+  
+  changeSkinPokemon3D: {
+    triggers: [
+      /\bhow.*(?:to|(?:do|can|does) (?:i|you|u|one|1))?.*(?:change|choose|pick|set)(?: a| you?(?:\'?re?)?)? (?:skin|sprite|look|character|player|image)s?.*pokemon[ \-]?3d\b/i
+    ],
+    responses: [
+      'Upload your skin to http://pokemon3d.net/skin/ and logout/login so you can see it.'
     ],
     needsName: false
   }
