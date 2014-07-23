@@ -17,7 +17,7 @@ var userBannedMessages = [
   '<<USER>> is banned. Finally!',
   'Would you look at that! <<USER>> got banned!',
   '<<USER>> has joined the exclusive banned club',
-  '<<USER>> is no more. May you RIP in pieace.',
+  '<<USER>> is no more. May you RIP in peace.',
   '<<USER>>, you have proven yourself worthy of the banhammer.',
   '<<USER>> has left GameJolt. Forever.',
   '<<USER>> has been banned for wallhack.',
