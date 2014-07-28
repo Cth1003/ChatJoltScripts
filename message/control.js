@@ -221,7 +221,6 @@ if (message.hasMyName) {
         else {
           switch (handlerNames[i]) {
             case 'debug':
-              say('Test', { 'ignoreCooldown': true });
               break;
             
             case 'clearScreen':
@@ -349,10 +348,11 @@ if (message.hasMyName) {
               break;
           }
         }
-        setHandled(true);
         handled = true;
         break;
       }
     }
   }
+  if (handled)
+    setHandled(true);
 }

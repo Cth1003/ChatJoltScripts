@@ -57,7 +57,6 @@ if (storage.init != true) {
 var handled = false;
 if ((message.userId == 205584 || message.userId == 236585) && !isIgnored(message.userId)) {
   say(stfuResponses[Math.floor(Math.random() * stfuResponses.length)].replace('<<USER>>', message.userNickname));
-  setHandled(true);
   handled = true;
 }
 
@@ -68,16 +67,16 @@ if (handled == false && message.content.length >= 8 && ALL_CAPS_RAGE_REGEX.test(
   if (storage.capsLevel >= 3.5) {
     say(allCapsRageResponses[Math.floor(Math.random() * allCapsRageResponses.length)].replace('<<USER>>', message.userNickname));
     storage.capsLevel -= 3.5;
-    setHandled(true);
     handled = true;
   }
 }
 
 if (handled == false && message.content.length > 300) {
   say(tooLongResponses[Math.floor(Math.random() * tooLongResponses.length)].replace('<<USER>>', message.userNickname));
-  setHandled(true);
   handled = true;
 }
 
 storage.lastRunTime = now;
 save();
+if (handled)
+  setHandled(true);

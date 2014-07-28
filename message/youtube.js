@@ -10,6 +10,7 @@ function nicifyNumber(n) {
   return n + '';
 }
 
+var handled = false;
 var match = message.content.match(YOUTUBE_VIDEO_REGEX);
 if (match && match[2].length == 11) {
   var result = youtube('video', match[2]);
@@ -23,7 +24,10 @@ if (match && match[2].length == 11) {
       if (channelTitle.length > 150)
         channelTitle = channelTitle.substring(0, 150) + '...';
       say(title + ', by ' + channelTitle + ' (' + nicifyNumber(statistics.viewCount) + ' views, ' + nicifyNumber(statistics.likeCount) + ' likes, ' + nicifyNumber(statistics.dislikeCount) + ' dislikes)');
-      setHandled(true);
+      handled = true;
     }
   }
 }
+
+if (handled)
+  setHandled(true);

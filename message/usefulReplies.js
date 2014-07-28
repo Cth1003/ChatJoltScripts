@@ -80,10 +80,12 @@ for (var i = 0; i < handlerNames.length && handled == false; i += 1) {
             break;
         }
         say(result);
-        setHandled(true);
         handled = true;
         break;
       }
     }
   }
 }
+
+if (handled)
+  setHandled(true);
